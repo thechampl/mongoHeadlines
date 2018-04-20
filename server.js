@@ -87,10 +87,10 @@ app.get("/scrape", function (req, res) {
     request("https://stackoverflow.com", function (error, response, html) {
         var $ = cheerio.load(html);
 
-        $("div.summary").each(function (i, element) {
+        $("a.question-hyperlink").each(function (i, element) {
 
-            var link = $(element).find("a").attr("href");
-            var title = $(element).find("a").children().text();
+            var link = $(element).attr("href");
+            var title = $(element).text();
 
             db.mongoHeadlines.insert({
                 title: title,
@@ -101,6 +101,18 @@ app.get("/scrape", function (req, res) {
         res.send("Scraped!");
     });
 });
+
+
+    // app.get("/favorites", function(req,res){
+    //     db.mongoHeadlines.find({favorite:true})
+    //     if (error) {
+    //         console.log(error);
+    //       }
+    //       // Otherwise, send the result of this query to the browser
+    //       else {
+    //         res.json(found);
+    //       }
+    //     });
 
 // Listen on port 3000
 app.listen(3000, function () {
