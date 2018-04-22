@@ -1,19 +1,18 @@
 <body class="container col-md-12">
     <h3 class="header" style="text-align: center">Stack Overflow</h3>
     <div class="col-md-8 offset-2">
-    <h4><button type="button" class="btn btn-danger btn-lg btn-block" id="scrape">Scrape</button></h4>
+    <h4><a href="/scrape"><button type="button" class="btn btn-danger btn-lg btn-block" id="scrape">Scrape</button></a></h4>
     </div>
     <table class="table table-sm">
       <thead>
         <tr>
-          <th scope="col" id="animal-name">Title</th>
-          <th scope="col" id="animal-legs">Link</th>         
+          <th scope="col" id="title">Title</th>
+          <th scope="col" id="link">Link</th>         
           <th scope="col" id="comments">Comments</th>
           <th scope="col" id="save">Save</th>
         </tr>
       </thead>
       <tbody id="results">
-        <!-- Results from DB here -->
       </tbody>
     </table>
     <script src="/js/app.js"></script>

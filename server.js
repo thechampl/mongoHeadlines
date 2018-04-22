@@ -98,21 +98,16 @@ app.get("/scrape", function (req, res) {
             })
         });
 
-        res.send("Scraped!");
+        res.redirect("/");
     });
 });
 
+app.get("/save",function(req,res){
+db.mongoHeadlines.update({_id: req.mongoHeadlines._id}, {favorite: true})
+alert("updated")
 
-    // app.get("/favorites", function(req,res){
-    //     db.mongoHeadlines.find({favorite:true})
-    //     if (error) {
-    //         console.log(error);
-    //       }
-    //       // Otherwise, send the result of this query to the browser
-    //       else {
-    //         res.json(found);
-    //       }
-    //     });
+})
+
 
 // Listen on port 3000
 app.listen(3000, function () {
