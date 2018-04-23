@@ -9,6 +9,7 @@ const express = require("express");
 const app = express();
 
 app.use(express.static("public"));
+app.use(express.static(__dirname + '/public'));
 // Setup Body Parser
 const bodyparser = require("body-parser");
 app.use(bodyparser.urlencoded({ extended: false }));
@@ -94,7 +95,8 @@ app.get("/scrape", function (req, res) {
 
             db.mongoHeadlines.insert({
                 title: title,
-                link: "https://stackoverflow.com" + link
+                link: "https://stackoverflow.com" + link,
+                favorite: false
             })
         });
 
@@ -102,11 +104,23 @@ app.get("/scrape", function (req, res) {
     });
 });
 
-app.get("/save",function(req,res){
-db.mongoHeadlines.update({_id: req.mongoHeadlines._id}, {favorite: true})
-alert("updated")
+app.get("/favorites", function (req, res) {
+    // Query: In our database, go to the animals collection, then "find" everything
+    db.mongoHeadlines.find({favorite: true}, function (error, found) {
+        // Log any errors if the server encounters one
+        if (error) {
+            console.log(error);
+        }
+        // Otherwise, send the result of this query to the browser
+        else {
+            res.json(found)
 
-})
+        }
+        
+    });
+});
+
+
 
 
 // Listen on port 3000

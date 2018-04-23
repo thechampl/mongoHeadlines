@@ -1,19 +1,35 @@
-<body class="container col-md-12">
-    <h3 class="header" style="text-align: center">Stack Overflow</h3>
-    <div class="col-md-8 offset-2">
-    <h4><a href="/scrape"><button type="button" class="btn btn-danger btn-lg btn-block" id="scrape">Scrape</button></a></h4>
-    </div>
-    <table class="table table-sm">
-      <thead>
-        <tr>
-          <th scope="col" id="title">Title</th>
-          <th scope="col" id="link">Link</th>         
-          <th scope="col" id="comments">Comments</th>
-          <th scope="col" id="save">Save</th>
-        </tr>
-      </thead>
-      <tbody id="results">
-      </tbody>
-    </table>
-    <script src="/js/app.js"></script>
-  </body>
+
+<body>  <div class="jumbotron" id="jumbo">
+    
+  </div>
+  
+<div class="row">
+      <div class="col-md-5 offset-1">
+        <a href="/scrape">
+          <button type="button" class="btn btn-outline-danger btn-lg btn-block" id="scrape">Update</button>
+        </a>
+      </div>
+      <div class="col-md-5">
+        <a href="/favorites">
+          <button type="button" class="btn btn-outline-info btn-lg btn-block" id="favorite">Favorites</button>
+        </a>
+      </div>
+      </div>
+   
+
+<div class="container col-md-10">
+  <table class="table table-sm">
+    <thead>
+      <tr>
+        <th scope="col" id="title">Title</th>
+        <th scope="col" id="link">Link</th>
+        <th scope="col" id="comments">Comments</th>
+        <th scope="col" id="save">Save</th>
+      </tr>
+    </thead>
+    <tbody id="results">
+    </tbody>
+  </table>
+  <script src="/js/app.js"></script>
+  </div>
+</body>
