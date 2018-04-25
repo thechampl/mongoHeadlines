@@ -104,7 +104,7 @@ app.get("/scrape", function (req, res) {
     });
 });
 
-app.get("/favorites", function (req, res) {
+app.get("/favorites/", function (req, res) {
     // Query: In our database, go to the animals collection, then "find" everything
     db.mongoHeadlines.find({favorite: true}, function (error, found) {
         // Log any errors if the server encounters one
@@ -119,6 +119,25 @@ app.get("/favorites", function (req, res) {
         
     });
 });
+app.get("/favorites/:id", function (req, res) {
+ console.log(req.param._id)
+db.mongoHeadlines.update(
+    {_id: req.params.id },
+    {"$set": {favorite: true}},
+    function (error, found){
+        if (error) {
+            console.log(error);
+        }
+        // Otherwise, send the result of this query to the browser
+        else {
+            console.log(found)
+
+        }
+    });
+
+});
+
+
 
 
 
