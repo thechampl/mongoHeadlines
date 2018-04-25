@@ -21,13 +21,9 @@ $(document).ready(function () {
       console.log(routeId)
 
       $.ajax({
-        method: "POST",
+        method: "GET",
         url: "/favorites/" + routeId,
-        data: {
-          title: mongoHeadlines.title,
-          link:  mongoHeadlines.link,
-          comments: $(".comments").val,
-        }
+        
       }).then(function (data) {
         console.log(data)
       })
