@@ -30,6 +30,7 @@ var cheerio = require("cheerio");
 var databaseUrl = "scraper";
 var collections = ["scrapedData"];
 var mongoose= require("mongoose")
+const ObjectId = mongoose.Types.ObjectId;
 
 // Hook mongojs configuration to the db variable
 var db = mongojs(databaseUrl, collections);
@@ -39,7 +40,7 @@ db.on("error", function (error) {
 });
 
 // // / If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/scraper";
+var MONGODB_URI = "mongodb://heroku_w66sk8xk:jh62597dj1u8rsujqtf79sjotm@ds157599.mlab.com:57599/heroku_w66sk8xk" || "mongodb://localhost/scraper";
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
@@ -124,7 +125,7 @@ app.get("/favorites/:id", function (req, res) {
  var reqid= req.params.id
 console.log(reqid)
 db.mongoHeadlines.update(
-    {_id : reqid},
+    {_id : ObjectId(reqid)},
     {"favorite": true},
     // {favorite: true},
     function (error, found){
