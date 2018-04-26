@@ -40,7 +40,7 @@ db.on("error", function (error) {
 });
 
 // // / If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-var MONGODB_URI = "mongodb://heroku_w66sk8xk:jh62597dj1u8rsujqtf79sjotm@ds157599.mlab.com:57599/heroku_w66sk8xk" || "mongodb://localhost/scraper";
+var MONGODB_URI = "process.env.MONGODB_URI" || "mongodb://localhost/scraper";
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
