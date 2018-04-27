@@ -29,7 +29,7 @@ var cheerio = require("cheerio");
 // Database configuration
 var databaseUrl = "scraper";
 var collections = ["scrapedData"];
-var mongoose= require("mongoose")
+var mongoose= require("mongoose");
 const ObjectId = mongoose.Types.ObjectId;
 
 // Hook mongojs configuration to the db variable
@@ -85,7 +85,10 @@ app.get("/all", function (req, res) {
 // push it into a MongoDB collection instead?
 
 app.get("/scrape", function (req, res) {
-    db.mongoHeadlines.drop();
+
+    db.mongoHeadlines.remove(
+        {"favorite":false})
+    
 
     request("https://stackoverflow.com", function (error, response, html) {
         var $ = cheerio.load(html);
@@ -118,6 +121,8 @@ app.get("/favorites/", function (req, res) {
             res.json(found)
 
         }
+
+        
         
     });
 });
