@@ -39,7 +39,7 @@ db.on("error", function (error) {
     console.log("Database Error:", error);
 });
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-var MONGODB_URI = "mongodb://thechampl:Kcrpw2713!@ds157599.mlab.com:57599/mongoscraperlcc" || "mongodb://localhost/scrapper";
+var MONGODB_URI = "mongodb://user:password@ds157599.mlab.com:57599/mongoscraperlcc" || "mongodb://localhost/scrapper";
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
 // Connect to the Mongo DB
