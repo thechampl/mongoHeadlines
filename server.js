@@ -32,21 +32,29 @@ var collections = ["scrapedData"];
 var mongoose= require("mongoose");
 const ObjectId = mongoose.Types.ObjectId;
 
+mongoose.Promise = Promise;
+
 // Hook mongojs configuration to the db variable
-var db = mongojs(databaseUrl, collections);
+mongoose.connect("mongodb://user:password@ds157599.mlab.com:57599/mongoscraperlcc");
+
+var db = mongoose.connection;
 
 db.on("error", function (error) {
     console.log("Database Error:", error);
 });
-// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-var MONGODB_URI = "mongodb://user:password@ds157599.mlab.com:57599/mongoscraperlcc" || "mongodb://localhost/scrapper";
 
-// Set mongoose to leverage built in JavaScript ES6 Promises
-// Connect to the Mongo DB
-mongoose.Promise = Promise;
-mongoose.connect(MONGODB_URI, {
-  useMongoClient: true
-});
+db.once("open", function(){
+    console.log("Mongoose Success")
+})
+// // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
+// var MONGODB_URI = "mongodb://user:password@ds157599.mlab.com:57599/mongoscraperlcc";
+
+// // Set mongoose to leverage built in JavaScript ES6 Promises
+// // Connect to the Mongo DB
+// mongoose.Promise = Promise;
+// mongoose.connect(MONGODB_URI, {
+//   useMongoClient: true
+// });
 
 
 
